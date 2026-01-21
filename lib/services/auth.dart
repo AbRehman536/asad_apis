@@ -67,7 +67,8 @@ class AuthServices{
     try{
       http.Response response = await http.put(
         Uri.parse('${BaseURL}/users/profile'),
-        headers : {'Authorization': token, 'Content-Type': 'application/json'},);
+        headers : {'Authorization': token, 'Content-Type': 'application/json'},
+        body : json.encode({"name": name,}),);
       if(response.statusCode == 200 || response.statusCode == 201){
         return true;
       }else{
