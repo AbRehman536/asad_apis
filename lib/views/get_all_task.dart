@@ -1,5 +1,9 @@
 import 'package:asad_apis/models/taskListing.dart';
 import 'package:asad_apis/services/task.dart';
+import 'package:asad_apis/views/filter_task.dart';
+import 'package:asad_apis/views/get_completed.dart';
+import 'package:asad_apis/views/get_inCompleted.dart';
+import 'package:asad_apis/views/search_task.dart';
 import 'package:asad_apis/views/update_task.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +19,20 @@ class GetAllTask extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Get All Task"),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> SearchTask()));
+          }, icon: Icon(Icons.search)),
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> FilterTask()));
+          }, icon: Icon(Icons.filter)),
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> GetCompletedTask()));
+          }, icon: Icon(Icons.circle)),
+          IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> GetInCompletedTask()));
+          }, icon: Icon(Icons.incomplete_circle)),
+        ],
       ),
       body: FutureProvider.value(
           value: TaskServices().getAllTask(userProvider.getToken().toString()),
